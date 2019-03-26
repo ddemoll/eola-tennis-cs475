@@ -92,14 +92,14 @@ Contains actual images (usually png) used in the application.
 - Clone repository and install dependencies:
     ```bash
     $ git clone https://github.com/ddemoll/eola-tennis-cs475.git
-    $ cd eola-tennis-cs475
+    $ cd eolatennis_cs475
     $ npm install
     ```
-    
+
 - Create database and start dev server:
     ```bash
     $ mysql < eolatennisdevdb.sql
-    $ cd eola-tennis-cs475/dev-env/server
+    $ cd eolatennis_cs475/dev-env/server
     $ node server.js
     ```
 
