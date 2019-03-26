@@ -86,8 +86,29 @@ Contains actual images (usually png) used in the application.
 
 ---
 
-`awsmobilejs` folder contains cloud REST API  
-`dev-env` folder contains development environment to test lamda functions and API locally
+`dev-env` folder contains development environment to test API locally
+
+## How to run
+- Clone repository and install dependencies:
+    ```bash
+    $ git clone https://github.com/ddemoll/eola-tennis-cs475.git
+    $ cd eola-tennis-cs475
+    $ npm install
+    ```
+    
+- Create database and start dev server:
+    ```bash
+    $ mysql < eolatennisdevdb.sql
+    $ cd eola-tennis-cs475/dev-env/server
+    $ node server.js
+    ```
+
+- Run application
+    ```bash
+    $ react-native run-ios
+    ```
+    ```bash
+    $ react-native run-android
 
 [react_native-badge]: https://img.shields.io/badge/React%20Native-0.59.2-blue.svg?style=flat
 [react_native-url]: https://facebook.github.io/react-native/
