@@ -4,8 +4,11 @@ import apisauce from 'apisauce'
 import Api from './Api'
 //import PayPal from '../Lib/PayPal'
 
+const config = require('../../config/config.json');
+
 // our "constructor"
-const create = (baseURL = 'http://192.168.1.139:3000/') => {
+const create = (baseURL = 'http://localhost:' + (config.devapi.serverport) + '/') => {
+	console.log("starting up dev api");
   // ------
   // STEP 1
   // ------

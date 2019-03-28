@@ -10,7 +10,6 @@ app.use(bodyParser.json());
 
 ///////////Announcements//////////
 app.get('/', (req, res) => {
-
   pool.query('SELECT * FROM announcements ORDER BY id DESC LIMIT 25', function (error, results, fields) {
     if (error) {
       console.log('Error running query', error);
@@ -25,7 +24,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-
   var {text, picKey, youtubeID} = req.body;
   let date = new Date().toISOString();
   let sqlDate = date.slice(0, 19).replace('T', ' ');
@@ -45,7 +43,6 @@ app.post('/', (req, res) => {
 
 app.delete('/:id', (req, res) => {
   //let path = req.apiGateway.event.path;
-
   let id = req.params.id;//path.substring(path.lastIndexOf('/')+1);
   pool.query('DELETE FROM announcements WHERE id=?', [id], function (error, results, fields) {
     if (error) {
@@ -62,7 +59,6 @@ app.delete('/:id', (req, res) => {
 
 });
 app.put('/', (req, res) => {
-
   let {text, picKey, id, youtubeID} = req.body;
 
   pool.query('UPDATE announcements SET text=?, picURI=?, youtubeID=? WHERE id=?', [text, picKey, youtubeID, id], function (error, results, fields) {
