@@ -1,9 +1,9 @@
 import React from 'react'
 import { Dimensions } from 'react-native'
 import { connect } from 'react-redux'
-import SignWaiverActions from '../Redux/SignWaiverRedux'
+import StoreActions from '../Redux/StoreRedux'
 import { CommonBasePage } from './CommonContainers'
-import { Text } from 'native-base';
+import { Button, Icon, Text } from 'native-base';
 import {
     CachedImage,
     ImageCacheProvider
@@ -15,14 +15,12 @@ import Fonts from '../Themes/Fonts'
 import getTheme from '../../native-base-theme/components';
 import { Images } from "../Themes";
 
-class SignWaiverPage extends React.PureComponent {
+class ClassesPage extends React.PureComponent {
 
   constructor (props) {
      super(props)
      this.width = Dimensions.get('window').width;
   }
-
-  // redux actions for sending and receiving a waiver. 
 
   render () {
 /*
@@ -36,10 +34,15 @@ class SignWaiverPage extends React.PureComponent {
 	
     return (
       <CommonBasePage
-	  pagetitle={"Contact Info"}
-	  navigation={this.props.navigation} >  
+	  pagetitle={"Classes"}
+	  navigation={this.props.navigation} 
+	  rightcontent={/*this.props.username != null && */  	// TODO: See why this is not working for me  
+		  <Button transparent onPress={() => this.props.navigation.navigate("AddClass")}>
+              <Icon name='md-add' />
+		  </Button>}
+		>  
 	  
-          <Text>Here goes Sign Waiver stuff!</Text>
+          <Text>Stuff for classes will go here.</Text>
 		  
 	</CommonBasePage>
 
@@ -48,10 +51,9 @@ class SignWaiverPage extends React.PureComponent {
   }
 }
 
-/*
 const mapStateToProps = (state) => {
   return {
-	  
+	  todostate : state 
   }
 }
 
@@ -60,7 +62,6 @@ const mapDispatchToProps = (dispatch) => {
     dispatch,
   };
 }
-*/
 
-export default SignWaiverPage
-//export default connect(mapStateToProps, mapDispatchToProps)(SignWaiverPage)
+//export default ClassesPage
+export default connect(mapStateToProps, mapDispatchToProps)(ClassesPage)

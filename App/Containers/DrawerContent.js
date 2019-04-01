@@ -38,6 +38,7 @@ class DrawerContent extends Component {
 			{ navtext : "Announcements", navlocation : "Announcements" },
 			{ navtext : "Featured Players", navlocation : "Featured" },
 			{ navtext : "Events", navlocation : "Events" },
+			{ navtext : "Classes", navlocation : "Classes" },
 			{ navtext : "UTR Rankings", navlocation : "Rankings" },
 			{ navtext : "Contact Info", navlocation : "Contacts" },
 			{ navtext : "Store", navlocation : "Store" },

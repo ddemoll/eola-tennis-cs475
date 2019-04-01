@@ -110,6 +110,16 @@ Contains actual images (usually png) used in the application.
     ```bash
     $ react-native run-android
 
+	
+## Readme/Documentation/Design Document TODO
+* Discuss [React Native](https://facebook.github.io/react-native/) since it is the main library.
+* Discuss [Redux](https://redux.js.org/) and [React-Redux](https://redux.js.org/basics/usage-with-react) since this is how data flow is handled. 
+* Discuss [Redux-Sage](https://redux-saga.js.org/), since it is the middleware library used with React-Redux.
+* Discuss [react-native-cached-image](https://github.com/kfiroo/react-native-cached-image) since it is the library for image caching 
+* Discuss [Express](https://expressjs.com/), since it is the library used for handling the REST calls. Not sure if the development environment and the production environment use the same library. 
+
+
+
 [react_native-badge]: https://img.shields.io/badge/React%20Native-0.59.2-blue.svg?style=flat
 [react_native-url]: https://facebook.github.io/react-native/
 [ios_platform-badge]: https://img.shields.io/badge/iOS-10.0+-lightgrey.svg

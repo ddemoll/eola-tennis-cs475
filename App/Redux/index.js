@@ -14,6 +14,8 @@ export default () => {
     contacts: require('./ContactsRedux').reducer,
     rankings: require('./RankingsRedux').reducer,
     store: require('./StoreRedux').reducer,
+    classes: require('./ClassesRedux').reducer,
+    signwaiver: require('./SignWaiverRedux').reducer,
   })
 
   return configureStore(rootReducer, rootSaga)
