@@ -2,6 +2,7 @@ import React from 'react'
 import { View, ActivityIndicator, Linking, FlatList, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import EventsActions from '../Redux/EventsRedux'
+import { CommonBasePage } from './CommonContainers'
 import { Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body, ActionSheet,
 List, ListItem } from 'native-base';
 
@@ -86,32 +87,19 @@ class EventsPage extends React.PureComponent {
                 />
     }
 
-    return (
-      <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-              <Icon name="ios-menu" />
-            </Button>
-          </Left>
-          <Body style={{ flex: 3 }}>
-            <Title>Events</Title>
-          </Body>
-          <Right>
-
-          {this.props.username != null &&
-            <Button transparent onPress={() => this.props.navigation.navigate("AddEvent")}>
+    return ( 
+	  <CommonBasePage
+	  pagetitle={"Events"}
+	  navigation={this.props.navigation}
+	  rightcontent={this.props.username != null &&
+		  <Button transparent onPress={() => this.props.navigation.navigate("AddEvent")}>
               <Icon name='md-add' />
-
-            </Button>
-          }
-          </Right>
-
-        </Header>
-          {content}
-
-      </Container>
-
+		  </Button>}
+		> 
+		  
+        {content}
+		  
+	</CommonBasePage> 
     )
   }
 }

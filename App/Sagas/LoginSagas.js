@@ -6,7 +6,7 @@ import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
 export function * login ({ username, password }) {
-  if (password !== 'USOpen18') {
+  if (password !== 'testpw') { // TODO: More secure password
     // dispatch failure
     yield put(LoginActions.loginFailure('WRONG'))
   } else {

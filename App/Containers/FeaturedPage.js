@@ -2,6 +2,7 @@ import React from 'react'
 import { Alert, ActivityIndicator, Image, FlatList, Dimensions, Text, View, Platform} from 'react-native'
 import { connect } from 'react-redux'
 import FeaturedActions from '../Redux/FeaturedRedux'
+import { CommonBasePage } from './CommonContainers'
 import { Title, Container, Header, Card, CardItem, Thumbnail, Button, Icon, Left, Right, Body, ActionSheet, List, StyleProvider } from 'native-base';
 import StarRating from 'react-native-star-rating';
 import {
@@ -119,32 +120,21 @@ class FeaturedPage extends React.PureComponent {
 
     }
 
-    return (
-      <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-              <Icon name="ios-menu" />
-            </Button>
-          </Left>
-          <Body style={{ flex: 3 }}>
-            <Title>Featured Players</Title>
-          </Body>
-          <Right>
-
-          {this.props.username != null && Platform.OS == 'ios' &&
-            <Button transparent onPress={() => this.props.navigation.navigate("AddFeatured")}>
+    return ( 
+	  <CommonBasePage
+	  pagetitle={"Featured Players"}
+	  navigation={this.props.navigation}
+	  rightcontent={this.props.username != null &&
+		  <Button transparent onPress={() => this.props.navigation.navigate("AddFeatured")}>
               <Icon name='md-add' />
-
-            </Button>
-          }
-          </Right>
-        </Header>
-          <ImageCacheProvider urlsToPreload={cacheURLs}>
-              {content}
-          </ImageCacheProvider>
-      </Container>
-
+		  </Button>}
+		> 
+		
+		  <ImageCacheProvider urlsToPreload={cacheURLs}>
+			  {content}
+		  </ImageCacheProvider>
+		  
+	  </CommonBasePage> 
     )
   }
 }

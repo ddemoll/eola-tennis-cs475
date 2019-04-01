@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Alert, ActivityIndicator, Image, FlatList, Dimensions, StyleSheet, Linking, TouchableOpacity } from 'react-native'
+import { Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 import StoreActions from '../Redux/StoreRedux'
-import { Title, Container, Header, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body, ActionSheet,
-List, StyleProvider } from 'native-base';
+import { CommonBasePage } from './CommonContainers'
+import { Text } from 'native-base';
 import {
     CachedImage,
     ImageCacheProvider
@@ -22,32 +22,26 @@ class SignWaiverPage extends React.PureComponent {
      this.width = Dimensions.get('window').width;
   }
 
+  // redux actions for sending and receiving a waiver. 
 
   render () {
-
+/*
     let content = <ActivityIndicator style={{alignItems: 'center', justifyContent: 'center', padding: 8, height: 80}} size="large" />
 
-    /*
+    
 	if (error !== null) {
       content = <Text style={{padding: 10, textAlign: 'center', color: 'red'}}>Error!</Text>
     }
 	*/
 	
     return (
-      <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-              <Icon name="ios-menu" />
-            </Button>
-          </Left>
-          <Body style={{ flex: 3 }}>
-            <Title>Sign Waiver</Title>
-          </Body> 
-        </Header>
+      <CommonBasePage
+	  pagetitle={"Contact Info"}
+	  navigation={this.props.navigation} >  
+	  
           <Text>Here goes Sign Waiver stuff!</Text>
-
-      </Container>
+		  
+	</CommonBasePage>
 
     )
 
