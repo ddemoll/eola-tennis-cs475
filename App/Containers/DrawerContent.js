@@ -75,6 +75,12 @@ class DrawerContent extends Component {
 						}}>
 							<Text>Store</Text>
 						</ListItem>
+						<ListItem onPress={() => {
+							this.props.navigation.navigate('Waiver')
+							this.props.navigation.dispatch(DrawerActions.closeDrawer());
+						}}>
+							<Text>Sign Waiver</Text>
+						</ListItem>
 
 						<ListItem onPress={this.handleLogin}>
 							<Text>{this.props.username != null ? 'Logout' : 'Admin Login'}</Text>

@@ -20,7 +20,6 @@ const getETAAnnouncements = (api) => {
   let cacheURLs = [];
 
   return api.getAnnouncements().then(response => {
-
       return Promise.all(response.map(async (post) => {
         // Make "key" work with paths like:
         // "private/us-east-1:7817b8c7-2a90-4735-90d4-9356d7f8f0c7/091357f0-f0bc-11e7-a6a2-937d1d45b80e.jpeg"

@@ -25,6 +25,8 @@ import StorePage from '../Containers/StorePage'
 import AddStore from '../Containers/AddStore'
 import EditStore from '../Containers/EditStore'
 
+import SignWaiverPage from '../Containers/SignWaiverPage'
+
 import styles from "./Styles/NavigationStyles";
 
 
@@ -102,6 +104,15 @@ const StoreNav = createStackNavigator(
 	}
 );
 
+const SignWaiverNav = createStackNavigator(
+	{
+		SignWaiverPage: { screen: SignWaiverPage }
+	},
+	{
+		initialRouteName: "SignWaiverPage",
+		headerMode: "none",
+	}
+);
 
 const NavigationDrawer = createDrawerNavigator({
 
@@ -111,6 +122,7 @@ const NavigationDrawer = createDrawerNavigator({
 		Rankings: { screen: RankingsNav },
 		Contacts: { screen: ContactsNav },
 		Store: { screen: StoreNav },
+		Waiver: { screen: SignWaiverNav },
 
 
 		Login: { screen: Login },
