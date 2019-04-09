@@ -12,6 +12,7 @@ import { EventsTypes } from '../Redux/EventsRedux'
 import { ContactsTypes } from '../Redux/ContactsRedux'
 import { RankingsTypes } from '../Redux/RankingsRedux'
 import { StoreTypes } from '../Redux/StoreRedux'
+import { ClassesTypes } from '../Redux/ClassesRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -22,6 +23,7 @@ import { getEvents, createEvent, deleteEvent, updateEvent } from './EventsSagas'
 import { getContacts } from './ContactsSagas'
 import { getRankings, /*createRanking, deleteRanking, searchPlayer*/ } from './RankingsSagas'
 import { getStore, /*createStore, deleteStore, updateStore*/ } from './StoreSagas'
+import { getClasses, /*createStore, deleteStore, updateStore*/ } from './ClassesSagas'
 
 /* ------------- API ------------- */
 
@@ -72,5 +74,7 @@ export default function * root () {
     takeLatest(StoreTypes.STORE_DELETE, deleteStore, api),
     takeLatest(StoreTypes.STORE_UPDATE, updateStore, api),
     */
+	
+	takeLatest(ClassesTypes.CLASSES_REQUEST, getClasses, api), 
   ])
 }

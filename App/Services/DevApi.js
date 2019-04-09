@@ -117,6 +117,8 @@ const create = (baseURL = 'http://192.168.0.4:' + (config.devapi.serverport) + '
 
   }
   */
+  
+  const getClasses = () => api.get('classes').then(response => response.data)
 
   // ------
   // STEP 3
@@ -167,6 +169,9 @@ const create = (baseURL = 'http://192.168.0.4:' + (config.devapi.serverport) + '
     deleteStore,
     updateStore,
     */
+	
+	getClasses
+	
   }
 }
 
