@@ -13,6 +13,7 @@ import { ContactsTypes } from '../Redux/ContactsRedux'
 import { RankingsTypes } from '../Redux/RankingsRedux'
 import { StoreTypes } from '../Redux/StoreRedux'
 import { ClassesTypes } from '../Redux/ClassesRedux'
+import { SignWaiverTypes } from '../Redux/SignWaiverRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -23,7 +24,8 @@ import { getEvents, createEvent, deleteEvent, updateEvent } from './EventsSagas'
 import { getContacts } from './ContactsSagas'
 import { getRankings, /*createRanking, deleteRanking, searchPlayer*/ } from './RankingsSagas'
 import { getStore, /*createStore, deleteStore, updateStore*/ } from './StoreSagas'
-import { getClasses, /*createStore, deleteStore, updateStore*/ } from './ClassesSagas'
+import { getClasses, /*createClasses, deleteClasses, updateClasses*/ } from './ClassesSagas'
+import { requestSign } from './SignWaiverSagas'
 
 /* ------------- API ------------- */
 
@@ -75,6 +77,9 @@ export default function * root () {
     takeLatest(StoreTypes.STORE_UPDATE, updateStore, api),
     */
 	
-	takeLatest(ClassesTypes.CLASSES_REQUEST, getClasses, api), 
+	takeLatest(ClassesTypes.CLASSES_REQUEST, getClasses, api),
+
+	
+	takeLatest(SignWaiverTypes.SIGN_WAIVER_REQUEST, requestSign, api), 
   ])
 }

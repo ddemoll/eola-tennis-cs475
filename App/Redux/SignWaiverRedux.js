@@ -4,8 +4,8 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  signWaiverRequest: ['payload_maybe'],
-  signWaiverSuccess: ['message_maybe'],
+  signWaiverRequest: ['name'],
+  signWaiverSuccess: ['name'],
   signWaiverFailure: ['error'] 
 })
 
@@ -15,7 +15,7 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  something: null,
+  sendStatus: false, // not sent
   error: null,
   fetching: false
 })
@@ -25,8 +25,8 @@ export const INITIAL_STATE = Immutable({
 // sign request initiated
 export const requestSign = (state) => state.merge({ fetching: true })
 
-export const signSuccess = (state, { something }) => // TODO: parameters
-  state.merge({ fetching: false, error: null, something })
+export const signSuccess = (state, { sendStatus }) => 
+  state.merge({ fetching: false, error: null, sendStatus })
 
 export const signFailure = (state, { error }) =>
   state.merge({ fetching: false, error })

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Dimensions } from 'react-native'
+import { Dimensions, Button } from 'react-native'
 import { connect } from 'react-redux'
-import SignWaiverActions from '../Redux/SignWaiverRedux'
+import { SignWaiverActions } from '../Redux/SignWaiverRedux'
 import { CommonBasePage } from './CommonContainers'
 import { Text } from 'native-base';
 import {
@@ -19,11 +19,15 @@ class SignWaiverPage extends React.PureComponent {
 
   constructor (props) {
      super(props)
-     this.width = Dimensions.get('window').width;
+     this.width = Dimensions.get('window').width; 
   }
 
   // redux actions for sending and receiving a waiver. 
-
+   requestSign = () => {
+	   console.log("request sign");
+	   this.props.dispatch(SignWaiverActions.requestSign("test name"));
+   }
+  
   render () {
 /*
     let content = <ActivityIndicator style={{alignItems: 'center', justifyContent: 'center', padding: 8, height: 80}} size="large" />
@@ -36,22 +40,22 @@ class SignWaiverPage extends React.PureComponent {
 	
     return (
       <CommonBasePage
-	  pagetitle={"Contact Info"}
+	  pagetitle={"Sign Waiver"}
 	  navigation={this.props.navigation} >  
 	  
           <Text>Here goes Sign Waiver stuff!</Text>
-		  
+		  <Button onPress={this.requestSign} 
+				title="this is the title" />
 	</CommonBasePage>
 
-    )
-
+    ); 
   }
 }
 
-/*
+
 const mapStateToProps = (state) => {
   return {
-	  
+	sendStatus : state.sendStatus 
   }
 }
 
@@ -60,7 +64,7 @@ const mapDispatchToProps = (dispatch) => {
     dispatch,
   };
 }
-*/
 
-export default SignWaiverPage
-//export default connect(mapStateToProps, mapDispatchToProps)(SignWaiverPage)
+
+//export default SignWaiverPage
+export default connect(mapStateToProps, mapDispatchToProps)(SignWaiverPage)
