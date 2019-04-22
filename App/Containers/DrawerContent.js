@@ -42,6 +42,7 @@ class DrawerContent extends Component {
 			{ navtext : "UTR Rankings", navlocation : "Rankings" },
 			{ navtext : "Contact Info", navlocation : "Contacts" },
 			{ navtext : "Store", navlocation : "Store" },
+			{ navtext : "Chatroom", navlocation : "Chatroom" }, 
 			{ navtext : "Sign Waiver", navlocation : "Waiver" } 
 		];
 		return (

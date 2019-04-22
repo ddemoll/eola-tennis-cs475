@@ -31,6 +31,8 @@ import AddClass from '../Containers/AddClass'
 
 import SignWaiverPage from '../Containers/SignWaiverPage'
 
+import ChatroomPage from '../Containers/ChatroomPage'
+
 import styles from "./Styles/NavigationStyles";
 
 
@@ -121,6 +123,16 @@ const ClassesNav = createStackNavigator(
 );
 
 
+const ChatroomNav = createStackNavigator(
+	{
+		ChatroomPage: { screen: ChatroomPage }
+	},
+	{
+		initialRouteName: "ChatroomPage",
+		headerMode: "none",
+	}
+);
+
 const SignWaiverNav = createStackNavigator(
 	{
 		SignWaiverPage: { screen: SignWaiverPage }
@@ -140,6 +152,7 @@ const NavigationDrawer = createDrawerNavigator({
 		Contacts: { screen: ContactsNav },
 		Store: { screen: StoreNav },
 		Classes: { screen: ClassesNav },
+		Chatroom: { screen: ChatroomNav },
 		Waiver: { screen: SignWaiverNav },
 
 		Login: { screen: Login },
