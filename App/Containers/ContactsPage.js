@@ -2,6 +2,7 @@ import React from 'react'
 import { Alert, ActivityIndicator, Image, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import ContactsActions from '../Redux/ContactsRedux'
+import { CommonBasePage } from './CommonContainers'
 import { Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body, ActionSheet,
 List, ListItem } from 'native-base';
 import {
@@ -58,27 +59,16 @@ class ContactsPage extends React.PureComponent {
                 />
     }
 
-    return (
-      <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-              <Icon name="ios-menu" />
-            </Button>
-          </Left>
-          <Body style={{ flex: 3 }}>
-            <Title>Contact Info</Title>
-          </Body>
-          <Right/>
-
-        </Header>
+    return ( 
+	<CommonBasePage
+	  pagetitle={"Contact Info"}
+	  navigation={this.props.navigation} >  
+	  
           <ImageCacheProvider urlsToPreload={cacheURLs}>
               {content}
 
           </ImageCacheProvider>
-
-      </Container>
-
+	</CommonBasePage>
     )
   }
 }

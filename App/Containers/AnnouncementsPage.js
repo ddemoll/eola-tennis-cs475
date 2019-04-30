@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Alert, ActivityIndicator, Image, FlatList, Dimensions, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import AnnouncementsActions from '../Redux/AnnouncementsRedux'
+import { CommonBasePage } from './CommonContainers'
 import { Title, Container, Header, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body, ActionSheet,
 List, StyleProvider } from 'native-base';
 import {
@@ -121,32 +122,21 @@ class AnnouncementsPage extends React.PureComponent {
 
     }
     return (
-      <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-              <Icon name="ios-menu" />
-            </Button>
-          </Left>
-          <Body style={{ flex: 3 }}>
-            <Title>Announcements</Title>
-          </Body>
-          <Right>
-          {this.props.username != null &&
-            <Button transparent onPress={() => this.props.navigation.navigate("AddAnnounce")}>
+	<CommonBasePage
+	  pagetitle={"Announcements"}
+	  navigation={this.props.navigation}
+	  rightcontent={this.props.username != null &&
+		  <Button transparent onPress={() => this.props.navigation.navigate("AddAnnounce")}>
               <Icon name='md-add' />
-
-            </Button>
-          }
-          </Right>
-        </Header>
-          <ImageCacheProvider urlsToPreload={cacheURLs}>
+		  </Button>}
+		> 
+		  
+		  <ImageCacheProvider urlsToPreload={cacheURLs}>
               {content}
 
           </ImageCacheProvider>
-
-      </Container>
-
+		  
+	</CommonBasePage>
     )
 
   }

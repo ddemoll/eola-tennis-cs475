@@ -1,0 +1,12 @@
+{
+	"aws" : {
+		"apikey" : "",
+	},
+	"devapi" : {
+		"serverport" : 3000,
+		"host" 		: "localhost",
+		"user"		: "",
+		"password"	: "",
+		"database"	: "eolatennis"
+	} 
+}

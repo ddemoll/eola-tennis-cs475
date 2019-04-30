@@ -4,8 +4,11 @@ import apisauce from 'apisauce'
 import Api from './Api'
 //import PayPal from '../Lib/PayPal'
 
+const config = require('../../config/config.json');
+
 // our "constructor"
-const create = (baseURL = 'http://192.168.1.139:3000/') => {
+const create = (baseURL = 'http://192.168.0.4:' + (config.devapi.serverport) + '/') => {
+	console.log("starting up dev api");
   // ------
   // STEP 1
   // ------
@@ -114,7 +117,11 @@ const create = (baseURL = 'http://192.168.1.139:3000/') => {
 
   }
   */
+  
+  const getClasses = () => api.get('classes').then(response => response.data)
 
+  
+  const requestWaiverSign = () => api.get('signwaiver').then(response => response.data); 
   // ------
   // STEP 3
   // ------
@@ -164,6 +171,9 @@ const create = (baseURL = 'http://192.168.1.139:3000/') => {
     deleteStore,
     updateStore,
     */
+	
+	getClasses
+	
   }
 }
 

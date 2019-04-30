@@ -25,6 +25,14 @@ import StorePage from '../Containers/StorePage'
 import AddStore from '../Containers/AddStore'
 import EditStore from '../Containers/EditStore'
 
+import ClassesPage from '../Containers/ClassesPage'
+import EditClass from '../Containers/EditClass'
+import AddClass from '../Containers/AddClass'
+
+import SignWaiverPage from '../Containers/SignWaiverPage'
+
+import ChatroomPage from '../Containers/ChatroomPage'
+
 import styles from "./Styles/NavigationStyles";
 
 
@@ -93,7 +101,7 @@ const RankingsNav = createStackNavigator(
 const StoreNav = createStackNavigator(
 	{
 		StorePage: { screen: StorePage },
-    AddStore: { screen: AddStore },
+		AddStore: { screen: AddStore },
 		EditStore: { screen: EditStore },
 	},
 	{
@@ -102,6 +110,38 @@ const StoreNav = createStackNavigator(
 	}
 );
 
+const ClassesNav = createStackNavigator(
+	{
+		ClassesPage: { screen: ClassesPage },
+		EditClass: { screen: EditClass },
+		AddClass: { screen: AddClass }
+	},
+	{
+		initialRouteName: "ClassesPage",
+		headerMode: "none",
+	}
+);
+
+
+const ChatroomNav = createStackNavigator(
+	{
+		ChatroomPage: { screen: ChatroomPage }
+	},
+	{
+		initialRouteName: "ChatroomPage",
+		headerMode: "none",
+	}
+);
+
+const SignWaiverNav = createStackNavigator(
+	{
+		SignWaiverPage: { screen: SignWaiverPage }
+	},
+	{
+		initialRouteName: "SignWaiverPage",
+		headerMode: "none",
+	}
+);
 
 const NavigationDrawer = createDrawerNavigator({
 
@@ -111,7 +151,9 @@ const NavigationDrawer = createDrawerNavigator({
 		Rankings: { screen: RankingsNav },
 		Contacts: { screen: ContactsNav },
 		Store: { screen: StoreNav },
-
+		Classes: { screen: ClassesNav },
+		Chatroom: { screen: ChatroomNav },
+		Waiver: { screen: SignWaiverNav },
 
 		Login: { screen: Login },
 	},

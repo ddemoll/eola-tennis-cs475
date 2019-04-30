@@ -34,48 +34,34 @@ class DrawerContent extends Component {
 
 		const navigation = this.props.navigation;
 		const items = this.props.items;
+		const navigationitems = [
+			{ navtext : "Announcements", navlocation : "Announcements" },
+			{ navtext : "Featured Players", navlocation : "Featured" },
+			{ navtext : "Events", navlocation : "Events" },
+			{ navtext : "Classes", navlocation : "Classes" },
+			{ navtext : "UTR Rankings", navlocation : "Rankings" },
+			{ navtext : "Contact Info", navlocation : "Contacts" },
+			{ navtext : "Store", navlocation : "Store" },
+			{ navtext : "Chatroom", navlocation : "Chatroom" }, 
+			{ navtext : "Sign Waiver", navlocation : "Waiver" } 
+		];
 		return (
 			<View style={styles.container}>
 				<Image source={Images.logo} style={styles.logo} />
 				<Content>
 					<List>
-						<ListItem onPress={() => {
-							this.props.navigation.navigate('Announcements')
-							this.props.navigation.dispatch(DrawerActions.closeDrawer());
-						}}>
-							<Text>Announcements</Text>
-						</ListItem>
-						<ListItem onPress={() => {
-							this.props.navigation.navigate('Featured')
-							this.props.navigation.dispatch(DrawerActions.closeDrawer());
-						}}>
-							<Text>Featured Players</Text>
-						</ListItem>
-						<ListItem onPress={() => {
-							this.props.navigation.navigate('Events')
-							this.props.navigation.dispatch(DrawerActions.closeDrawer());
-						}}>
-							<Text>Events</Text>
-						</ListItem>
-						<ListItem onPress={() => {
-							this.props.navigation.navigate('Rankings')
-							this.props.navigation.dispatch(DrawerActions.closeDrawer());
-						}}>
-							<Text>UTR Rankings</Text>
-						</ListItem>
-						<ListItem onPress={() => {
-							this.props.navigation.navigate('Contacts')
-							this.props.navigation.dispatch(DrawerActions.closeDrawer());
-						}}>
-							<Text>Contact Info</Text>
-						</ListItem>
-						<ListItem onPress={() => {
-							this.props.navigation.navigate('Store')
-							this.props.navigation.dispatch(DrawerActions.closeDrawer());
-						}}>
-							<Text>Store</Text>
-						</ListItem>
-
+						{navigationitems.map((navitem) => {
+							const {navlocation, navtext} = navitem;
+							return (
+								<ListItem onPress={() => {
+									this.props.navigation.navigate(navlocation)
+									this.props.navigation.dispatch(DrawerActions.closeDrawer());
+								}} key={navlocation}>
+									<Text>{navtext}</Text>
+								</ListItem>
+							); 
+						})}
+						
 						<ListItem onPress={this.handleLogin}>
 							<Text>{this.props.username != null ? 'Logout' : 'Admin Login'}</Text>
 						</ListItem>
