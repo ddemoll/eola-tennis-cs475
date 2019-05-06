@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "apisauce": "^1.0.2",
+    "aws-amplify-react-native": "^2.1.10",
     "buffer": "^5.2.1",
     "moment": "^2.24.0",
     "native-base": "^2.12.1",

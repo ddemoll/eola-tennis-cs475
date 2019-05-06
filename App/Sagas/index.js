@@ -25,7 +25,7 @@ import { getContacts } from './ContactsSagas'
 import { getRankings, /*createRanking, deleteRanking, searchPlayer*/ } from './RankingsSagas'
 import { getStore, /*createStore, deleteStore, updateStore*/ } from './StoreSagas'
 import { getClasses, /*createClasses, deleteClasses, updateClasses*/ } from './ClassesSagas'
-import { requestSign } from './SignWaiverSagas'
+import { signWaiverRequest } from './SignWaiverSagas'
 
 /* ------------- API ------------- */
 
@@ -80,6 +80,6 @@ export default function * root () {
 	takeLatest(ClassesTypes.CLASSES_REQUEST, getClasses, api),
 
 	
-	takeLatest(SignWaiverTypes.SIGN_WAIVER_REQUEST, requestSign, api), 
+	takeLatest(SignWaiverTypes.SIGN_WAIVER_REQUEST, signWaiverRequest, api), 
   ])
 }

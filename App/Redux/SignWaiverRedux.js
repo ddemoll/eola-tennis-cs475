@@ -5,7 +5,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   signWaiverRequest: ['name'],
-  signWaiverSuccess: ['name'],
+  signWaiverSuccess: ['signName'],
   signWaiverFailure: ['error'] 
 })
 
@@ -23,20 +23,20 @@ export const INITIAL_STATE = Immutable({
 /* ------------- Reducers ------------- */
 
 // sign request initiated
-export const requestSign = (state) => state.merge({ fetching: true })
+export const signWaiverRequest = (state, { name }) => state.merge({ fetching: true, name })
 
-export const signSuccess = (state, { sendStatus }) => 
+export const signWaiverSuccess = (state, { sendStatus }) => 
   state.merge({ fetching: false, error: null, sendStatus })
 
-export const signFailure = (state, { error }) =>
+export const signWaiverFailure = (state, { error }) =>
   state.merge({ fetching: false, error })
 
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.SIGN_WAIVER_REQUEST]: requestSign,
-  [Types.SIGN_WAIVER_SUCCESS]: signSuccess,
-  [Types.SIGN_WAIVER_FAILURE]: signFailure 
+  [Types.SIGN_WAIVER_REQUEST]: signWaiverRequest,
+  [Types.SIGN_WAIVER_SUCCESS]: signWaiverSuccess,
+  [Types.SIGN_WAIVER_FAILURE]: signWaiverFailure 
 })
 

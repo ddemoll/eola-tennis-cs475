@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dimensions, Button, TextInput } from 'react-native'
 import { connect } from 'react-redux'
-import { SignWaiverActions } from '../Redux/SignWaiverRedux'
+import SignWaiverActions from '../Redux/SignWaiverRedux'
 import { CommonBasePage } from './CommonContainers'
 import { Text } from 'native-base';
 import {
@@ -15,19 +15,22 @@ import Fonts from '../Themes/Fonts'
 import getTheme from '../../native-base-theme/components';
 import { Images } from "../Themes";
 
+// TODO: make this something with SES in AWS? 
+//import { PushNotification } from 'aws-amplify-react-native';
+
+
 class SignWaiverPage extends React.PureComponent {
 
   constructor (props) {
      super(props)
      this.width = Dimensions.get('window').width; 
-	 this.state = { signname : "" }
+     // signnanme is the state of the text box. signNameRequest is what was actually sent out/requested 
+   this.state = { signname : "", signNameRequest : "" }
   }
 
-  // redux actions for sending and receiving a waiver. 
-   requestSign = () => {
-	   console.log("request sign");
-	   this.props.dispatch(SignWaiverActions.requestSign("test name"));
-   }
+  submitSignRequest = () => {
+    this.props.requestSign(this.state.signname);
+  }
   
   render () {
 /*
@@ -50,7 +53,7 @@ class SignWaiverPage extends React.PureComponent {
 			onChangeText={(signname) => this.setState({signname})}
 			value={this.state.signname}
 		  />
-		  <Button onPress={this.requestSign} 
+		  <Button onPress={this.submitSignRequest} 
 				title="Submit" />
 	</CommonBasePage>
 
@@ -61,13 +64,15 @@ class SignWaiverPage extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-	sendStatus : state.sendStatus 
+  sendStatus : state.sendStatus,
+  signName : state.signNameRequest
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatch,
+    requestSign: (name) => dispatch(SignWaiverActions.signWaiverRequest(name)),
   };
 }
 
