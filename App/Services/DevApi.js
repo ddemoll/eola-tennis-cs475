@@ -7,7 +7,7 @@ import Api from './Api'
 const config = require('../../config/config.json');
 
 // our "constructor"
-const create = (baseURL = 'http://192.168.0.4:' + (config.devapi.serverport) + '/') => {
+const create = (baseURL = 'http://' + config.devapi.ipaddress + ':' + (config.devapi.serverport) + '/') => {
 	console.log("starting up dev api");
   // ------
   // STEP 1
@@ -121,7 +121,7 @@ const create = (baseURL = 'http://192.168.0.4:' + (config.devapi.serverport) + '
   const getClasses = () => api.get('classes').then(response => response.data)
 
   
-  const requestWaiverSign = () => api.get('signwaiver').then(response => response.data); 
+  const RequestWaiverSign = (data) => api.post('signwaiver', data).then(response => ({data: response, ok: true})).catch(error => ({ok: false}))
   // ------
   // STEP 3
   // ------
@@ -172,7 +172,9 @@ const create = (baseURL = 'http://192.168.0.4:' + (config.devapi.serverport) + '
     updateStore,
     */
 	
-	getClasses
+    getClasses,
+    
+    RequestWaiverSign
 	
   }
 }
