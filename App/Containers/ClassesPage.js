@@ -29,6 +29,34 @@ class ClassesPage extends React.PureComponent {
 
   }
 
+  optionsOnPress = (index, item) => {
+    ActionSheet.show(
+      {
+        options: ["Edit", "Delete", "Cancel"],
+        cancelButtonIndex: 2,
+        destructiveButtonIndex: 1,
+
+      },
+      buttonIndex => {
+        if(buttonIndex == 0) {
+          this.props.navigation.navigate("EditClass", {index, item})
+        }
+        else if(buttonIndex == 1) {
+          Alert.alert(
+            'Are you sure you want to delete this item?',
+            '',
+            [
+
+              {text: 'Cancel', style: 'cancel'},
+              {text: 'Delete', onPress: () => this.props.dispatch(ClassesActions.classesDelete(index, item.id, item.picKey))},
+            ],
+            { cancelable: false }
+          )
+        }
+
+      }
+    )
+  }
 
   render () {
 	const {fetching, error, payload, cacheURLs} = this.props.classes;
@@ -116,7 +144,8 @@ class ClassesPage extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-	  classes : state.classes  //???
+    classes : state.classes,  //???
+    username : state.login.username
   }
 }
 
