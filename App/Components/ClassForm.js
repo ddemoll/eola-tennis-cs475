@@ -20,8 +20,10 @@ class ClassForm extends Component {
 
 
   isPostDisabled = () => {
-    const { date, title, subtitle, link } = this.state;
-    return (date == null || title.length == 0 || subtitle.length == 0 || link.length == 0 )
+    const { title, description, price, date, picURI, paypalURL } = this.state;
+    return (date == null || description.length == 0 || 
+            price.length == 0 || picURI.length == 0 || 
+            title.length == 0 || paypalURL.length == 0)
   }
 
   sendData = () => {
@@ -30,7 +32,7 @@ class ClassForm extends Component {
 
   render () {
 
-    const { date, title, subtitle, link } = this.state;
+    const { title, description, price, date, picURI, paypalURL } = this.state;
     const {fetching, error} = this.props.reduxStatus;
 
   return (
@@ -69,7 +71,7 @@ class ClassForm extends Component {
                 <Item >
                   <Label>Description</Label>
                   <Input
-                    value={subtitle}
+                    value={description}
                     keyboardType="default"
                     onChangeText={(description) => this.setState({ description })}
                     maxLength={100}
@@ -78,7 +80,7 @@ class ClassForm extends Component {
                 <Item >
                   <Label>Price</Label>
                   <Input
-                    value={subtitle}
+                    value={price}
                     keyboardType="numeric"
                     onChangeText={(price) => this.setState({ price })}
                     maxLength={100}
@@ -112,7 +114,7 @@ class ClassForm extends Component {
                 <Item >
                   <Label>Picture Link</Label>
                   <Input
-                    value={link}
+                    value={picURI}
                     keyboardType="default"
                     onChangeText={(picURI) => this.setState({ picURI })}
                     maxLength={100}
@@ -121,7 +123,7 @@ class ClassForm extends Component {
                 <Item >
                   <Label>PayPal Link</Label>
                   <Input
-                    value={link}
+                    value={paypalURL}
                     keyboardType="default"
                     onChangeText={(paypalURL) => this.setState({ paypalURL })}
                     maxLength={100}
@@ -139,4 +141,4 @@ class ClassForm extends Component {
 
 
 
-export default EventForm
+export default ClassForm

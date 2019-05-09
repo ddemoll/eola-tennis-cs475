@@ -12,7 +12,7 @@ import { BackHandler } from 'react-native'
 import { Title, Container, Header, Content, Text, Button, Icon, Left, Right, Body, Textarea } from 'native-base';
 
 import ClassesActions from '../Redux/ClassesRedux'
-// import Store from '../Components/Store' // TODO: Class component 
+import ClassForm from '../Components/ClassForm' // TODO: Class component 
 
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
@@ -31,7 +31,7 @@ class AddClass extends Component {
     })
   }
 
-  createProduct = (data) => {
+  createClass = (data) => {
 
     this.props.dispatch(ClassesActions.classesCreate(data))
   }
@@ -39,21 +39,28 @@ class AddClass extends Component {
 
   render () {
 
-    const {fetching, created, error} = this.props.store;
+    const {fetching, created, error} = this.props.classes;
 
     let content = null;
     if(created !== null) {
-      this.props.dispatch(ClassesActions.storeCreateDone())
+      this.props.dispatch(ClassesActions.classesCreateDone())
       this.props.navigation.goBack();
       return null
     } else {
       let initData = {
-        text: "",
+        title: "",
+        description: "",
         price: "",
-        selectedImage: null,
+        date: null,
+        picURI: "",
+        paypalURL: ""
 
       }
-      return (<Text>TODO: This is where the add class page should be</Text>); // <Store navigation={this.props.navigation} data={initData} done={this.createProduct} reduxStatus={this.props.store} editScreen={false} />
+      return <ClassForm navigation={this.props.navigation} 
+        data={initData} 
+        done={this.createClass} 
+        reduxStatus={this.props.classes} 
+        editScreen={false} />
     }
   }
 
@@ -61,7 +68,7 @@ class AddClass extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    store: state.store
+    classes: state.classes
   }
 }
 
