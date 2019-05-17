@@ -1,12 +1,18 @@
 {
-	"aws" : {
-		"apikey" : "",
-	},
 	"devapi" : {
+		"ipaddress" : "192.168.0.1", 
 		"serverport" : 3000,
 		"host" 		: "localhost",
 		"user"		: "",
 		"password"	: "",
 		"database"	: "eolatennis"
 	} 
+	
+	"accessKeyId": "AWS Access key id", 
+	"secretAccessKey": "AWS secret access key", 
+	"region": "aws region",
+
+	"signWaiver" : {
+		"adminEmail" : "admin@website.com"
+	}
 }

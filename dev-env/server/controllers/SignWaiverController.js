@@ -20,13 +20,26 @@ app.post('/', (req, res) => {
   console.log("** incoming request's body value **");
   console.log(req.body);
   var namePost = undefined;
+  var emailPost = undefined;
+  var cellphonePost = undefined;
+  var selectedFormPost = undefined;
   if (req.body.name) {
     namePost = req.body.name; 
+  } 
+  if (req.body.email) {
+    emailPost = req.body.email; 
+  } 
+  if (req.body.cellphone) {
+    cellphonePost = req.body.cellphone; 
   }
+  if (req.body.selectedForm) {
+    selectedFormPost = req.body.selectedForm; 
+  }
+  
 
   console.log(namePost); 
 
-  if (namePost != undefined) {
+  if (namePost != undefined && emailPost != undefined && cellphonePost != undefined && selectedFormPost != undefined) {
     
     // COPY PASTED FROM AWS WEBSITE; https://docs.aws.amazon.com/ses/latest/DeveloperGuide/examples-send-using-sdk.html
     aws.config.loadFromPath("../../config/config.json");
@@ -34,15 +47,20 @@ app.post('/', (req, res) => {
     const charset = "UTF-8";
     var ses = new aws.SES();
 
-    var messageText = "Waiver confirmation for: " + namePost;
+    var typeOfFormText = "No form type selected";
+    if (selectedFormPost == 'adult') {
+      typeOfFormText = "Adult"
+    } else if (selectedFormPost == 'parent') {
+      typeOfFormText = "Parent"
+    }
+    var messageText = "Waiver confirmation for: " + namePost + "\nType of form: " + typeOfFormText + "\nEmail: " + emailPost + "\nCellphone Number: " + cellphonePost + "\n\n";
+    var messageTextHtml = "<p>Waiver confirmation for: " + namePost + "</p><p>Type of form: " + typeOfFormText + "</p>Email: " + emailPost + "</p><p>Cellphone Number: " + cellphonePost + "</p>";
 
     // Specify the parameters to pass to the API.
     var params = { 
       Source: "Eola Developer Email <eola.tennis.developer@gmail.com>", 
       Destination: { 
-        ToAddresses: [
-          configjson.signWaiver.adminEmail
-        ],
+        ToAddresses:  configjson.signWaiver.adminEmails,
       },
       Message: {
         Subject: {
@@ -51,11 +69,11 @@ app.post('/', (req, res) => {
         },
         Body: {
           Text: {
-            Data: "Message: " + messageText,
+            Data: "Waiver confirmation automatically submitted through the mobile app: " + messageText,
             Charset: charset 
           },
           Html: {
-            Data: "<html><head></head><body><p>Message: " + messageText + "</p></body></html>",
+            Data: "<html><head></head><body><p>Waiver confirmation automatically submitted through the mobile app: " + messageTextHtml + "</p><p>Eola Tennis Club. Do not reply to this email</p></body></html>",
             Charset: charset
           }
         }
@@ -65,15 +83,20 @@ app.post('/', (req, res) => {
     console.log(params); 
   //Try to send the email.
   ses.sendEmail(params, function(err, data) {
+    console.log("Response from email");
+    console.log(err);
+    console.log(data); 
     // If something goes wrong, print an error message.
     if(err) {
       res.json({
-        "status" : "we failed to send the email D;",
+        "status" : "we failed to send the email",
+        "success" : false,
         "error" : err
       });
     } else {
       res.json({
-        "status" : "we send the message!!!",
+        "status" : "we sent the email",
+        "success" : true,
         "data" : data
       });
     }
@@ -82,7 +105,8 @@ app.post('/', (req, res) => {
   } // end name post
   else {
     res.json({
-      "error" : "No name was provided!"
+      "success" : false,
+      "error" : "No name, email, or cellphone was provided!"
     }); 
   }
   

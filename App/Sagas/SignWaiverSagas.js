@@ -6,14 +6,18 @@ import SignWaiverActions from '../Redux/SignWaiverRedux'
 
 // attempts to login
 export function * signWaiverRequest (api, action) {
-  const { name } = action; 
-  // try to sign with the given name. 
-  console.log(action);
-  console.log("SIGN WAIVER REQUEST SAGA HAS BEEN CALLED");
+  const { name, email, cellphone, selectedForm } = action; 
   
-  const response = yield api.RequestWaiverSign({name : name + " to POST"}); 
+  const response = yield api.RequestWaiverSign({name, email, cellphone, selectedForm}); 
+  console.log("RESPONSE"); 
   console.log(response);
-  
-  yield put(SignWaiverActions.signWaiverSuccess({ name }));
+  console.log(response.data);
+  console.log(response.data.data);
+  if (response.data !== undefined && response.data.data !== undefined && response.data.data.success) {
+    yield put(SignWaiverActions.signWaiverSuccess({ name }));
+  } else {
+    yield put(SignWaiverActions.signWaiverFailure({ error : response.data.data.error }));
+  } 
+
 }
 
